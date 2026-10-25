@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.*
+dist/
+build/
+*.log
+*.tmp
+.DS_Store
+__pycache__/
+*.pyc
+.firebase/

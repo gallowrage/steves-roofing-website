@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roof Masters - 3D Presentation & Takeoff</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="no-print" style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem;">
+        <div>
+            <img src="logo.png" alt="Roof Masters Logo" style="height: 60px; margin-bottom: 5px; margin-left: -15px; mix-blend-mode: multiply;">
+            <p style="margin: 0; font-size: 1.1rem; font-weight: bold;">Steve McCary</p>
+            <p style="margin: 0; font-size: 1rem; color: #555;">Owner & Supervisor</p>
+            <p style="margin: 0; font-size: 1rem; color: #555;">📞 (828) 767-9563</p>
+        </div>
+        <div style="text-align: right;">
+            <!-- Right side can be empty or have secondary info, mimicking the business card layout which is often left-aligned -->
+        </div>
+    </header>
+    <main>
+        <section class="instructions">
+            <h2>Takeoff & Presentation Workflow</h2>
+            <p>1. Enter the address to locate the property on the <strong>Measurement Tool</strong>.</p>
+            <p>2. Click each corner of the roof to trace it, then click that <strong>first (yellow) corner again</strong> to finish the outline. The app will automatically calculate the exact Area and Perimeter footprint.</p>
+            <p>3. Select the <strong>Pitch</strong> and <strong>Material</strong> to instantly calculate the total retail proposal price based on your material costs.</p>
+            <p style="margin-bottom: 0;"><em>The 3D Preview and AI Visualizer tabs are optional extras to show a customer — you only need the 2D tab above to get a price.</em></p>
+        </section>
+
+        <section class="app-container">
+            <div class="visualizer-container">
+                <div class="map-search-container">
+                    <input type="text" id="addressInput" placeholder="Enter customer address...">
+                    <button id="searchBtn">Find Address</button>
+                </div>
+
+                <div class="map-tabs">
+                    <button id="tab2dBtn" class="active-tab">📐 Measure Roof (2D)</button>
+                    <button id="tab3dBtn">🏠 3D Preview (optional)</button>
+                    <button id="tabAiBtn">🖼️ AI Visualizer (optional)</button>
+                </div>
+                
+                <!-- 2D Map Container -->
+                <div id="map2d-container" style="width: 100%; height: 550px; background: #ddd; border: 2px solid #000000; border-radius: 8px;"></div>
+                
+                <div class="controls-2d" id="controls2d" style="margin-top: 1rem; text-align: center;">
+                    <p style="margin-bottom: 10px;">Click the map to trace the roof. <span id="perimeterText" style="font-weight:bold; color: #73000A;">Perimeter: 0 LF</span> | <span id="areaText" style="font-weight:bold; color: #000000;">Area: 0 Sq Ft</span></p>
+                    <button id="clearBtn">Clear Shape</button>
+                </div>
+
+                <!-- 3D Photorealistic Preview (hidden until the roof is traced) -->
+                <div id="map3d-container" class="hidden"></div>
+                <div class="controls-3d hidden" id="controls3d">
+                    <p>Showing the traced roof in the selected panel color over Google's Photorealistic 3D imagery.</p>
+                </div>
+
+                <!-- AI Roof Visualizer: sends a photo of the property to a backend that asks Gemini to repaint the roof -->
+                <div id="aiVisualizerContainer" class="hidden" style="width: 100%; min-height: 550px; background: #ddd; border: 2px solid #000000; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <img id="aiVisualizerImage" class="hidden" style="max-width: 100%; max-height: 550px; display: block;" alt="AI-generated roof visualization">
+                    <p id="aiVisualizerPlaceholder" style="color: #666; padding: 1rem; text-align: center;">Search an address, then generate an AI visualization of the selected roofing product.</p>
+                </div>
+                <div class="controls-3d hidden" id="controlsAi" style="flex-wrap: wrap;">
+                    <label style="display:flex; align-items:center; gap:6px; font-weight: normal; margin: 0;"><input type="radio" name="aiSource" value="satellite" checked> Satellite photo</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-weight: normal; margin: 0;"><input type="radio" name="aiSource" value="streetview"> Street view photo</label>
+                    <button id="generateAiBtn">Generate AI Visualization</button>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <h3>Material Styling</h3>
+                <label for="panelStyle">Panel System:</label>
+                <select id="panelStyle">
+                    <option value="standing_seam">26ga Standing Seam (Concealed Fastener) - Premium</option>
+                    <option value="exposed_fastener">29ga Ribbed Panel (Exposed Fastener) - Standard</option>
+                    <option value="shingles">Architectural Shingles</option>
+                </select>
+
+                <label for="panelColor">Color Selection:</label>
+                <select id="panelColor" style="margin-bottom: 1.5rem;">
+                    <option value="Galvalume">Galvalume (Unpainted)</option>
+                    <option value="Charcoal Gray">Charcoal Gray</option>
+                    <option value="Burnished Slate">Burnished Slate</option>
+                    <option value="Crimson Red">Crimson Red</option>
+                    <option value="Hunter Green">Hunter Green</option>
+                    <option value="Matte Black">Matte Black</option>
+                </select>
+
+                <div style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="isTearOff" style="width: 20px; height: 20px;">
+                    <label for="isTearOff" style="margin: 0; font-weight: bold;">Include Tear-Off & Disposal</label>
+                </div>
+
+                <!-- Over-Shingle Recover Savings Badge -->
+                <div id="purlinSavingsBadge" style="background: #e8f5e9; border: 2px solid #2e7d32; border-radius: 6px; padding: 12px 14px; margin-bottom: 1.5rem; transition: all 0.3s ease;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-weight: bold; color: #1b5e20; font-size: 0.95rem;">🌲 Over-Shingle Recover Advantage:</span>
+                        <span style="background: #2e7d32; color: white; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 0.9rem;">SAVE $1,950</span>
+                    </div>
+                    <p style="margin: 6px 0 0 0; font-size: 0.85rem; color: #2e7d32; line-height: 1.35;">
+                        Installing 1x4 wood purlins directly over existing shingles eliminates Buncombe County landfill dumpster fees ($650) and demo labor ($1,300) while adding a ventilated thermal barrier.
+                    </p>
+                </div>
+
+                <div class="input-grid" style="margin-bottom: 1.5rem;">
+                    <div>
+                        <label for="complexity">Roof Complexity (Waste %):</label>
+                        <select id="complexity">
+                            <option value="1.05">Simple (Gable, few cuts) - 5% Waste</option>
+                            <option value="1.10" selected>Average (Some hips/valleys) - 10% Waste</option>
+                            <option value="1.15">Complex (Many hips/valleys/dormers) - 15% Waste</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="roofPitch">Average Roof Pitch:</label>
+                        <select id="roofPitch">
+                            <option value="1.00">Flat or Low Slope (0/12 - 3/12)</option>
+                            <option value="1.12" selected>Medium Slope (4/12 - 6/12)</option>
+                            <option value="1.25">Steep Slope (7/12 - 9/12)</option>
+                            <option value="1.41">Very Steep (10/12 - 12/12)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h3>Lineal Takeoff Measurements</h3>
+                <div class="input-grid">
+                    <div>
+                        <label for="roofArea">Total Area (Sq Ft):</label>
+                        <input type="number" id="roofArea" value="1500" min="1">
+                    </div>
+                    <div>
+                        <label for="eaveLength">Total Eaves (LF):</label>
+                        <input type="number" id="eaveLength" value="80" min="0">
+                    </div>
+                    <div>
+                        <label for="ridgeLength">Total Ridges (LF):</label>
+                        <input type="number" id="ridgeLength" value="40" min="0">
+                    </div>
+                    <div>
+                        <label for="rakeLength">Total Rakes/Gables (LF):</label>
+                        <input type="number" id="rakeLength" value="60" min="0">
+                    </div>
+                    <div>
+                        <label for="valleyLength">Total Valleys/Hips (LF):</label>
+                        <input type="number" id="valleyLength" value="0" min="0">
+                    </div>
+                </div>
+
+                <!-- Pricing inputs removed to hide them from the customer facing app -->
+
+                <button id="calculateBtn" class="full-width-btn">Generate Precise Takeoff & Proposal</button>
+
+                <div id="results" class="results-hidden">
+                    <div id="proposalContent">
+                        <!-- Top Header -->
+                        <div class="print-header hidden" id="printHeader" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; border-bottom: none;">
+                            <div style="flex: 1;">
+                                <img src="logo.png" alt="Roof Masters Logo" class="print-logo" style="max-height: 80px; width: auto; object-fit: contain; mix-blend-mode: multiply; margin-left: -10px; margin-bottom: 5px;">
+                                <p style="margin: 0; font-size: 1.1rem; font-weight: bold;">Steve McCary</p>
+                                <p style="margin: 0; font-size: 1rem; color: #555;">Owner & Supervisor</p>
+                                <p style="margin: 0; font-size: 1rem; color: #555;">📞 (828) 767-9563</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <h1 style="color: #73000A; margin: 0; font-size: 2.5rem; letter-spacing: 2px;">PROPOSAL</h1>
+                                <p style="margin: 10px 0 0 0; font-size: 1.1rem;"><strong>Date:</strong> <span id="printDate"></span></p>
+                            </div>
+                        </div>
+
+                        <!-- Customer Info Grid -->
+                        <div class="hidden" id="printCustomerGrid" style="display: grid; grid-template-columns: 1fr 1fr; border: 2px solid #000; margin-bottom: 20px;">
+                            <div style="border-right: 2px solid #000; padding: 10px;">
+                                <p style="margin: 0 0 10px 0;"><strong>PROPOSAL SUBMITTED TO:</strong></p>
+                                <div style="border-bottom: 1px solid #000; height: 20px; margin-bottom: 10px;"></div>
+                                <p style="margin: 0 0 10px 0;"><strong>STREET:</strong></p>
+                                <div id="printAddressLine1" style="border-bottom: 1px solid #000; height: 20px; margin-bottom: 10px; font-family: monospace; font-size: 1.1rem;"></div>
+                                <p style="margin: 0 0 10px 0;"><strong>CITY, STATE AND ZIP CODE:</strong></p>
+                                <div id="printAddressLine2" style="border-bottom: 1px solid #000; height: 20px;"></div>
+                            </div>
+                            <div style="padding: 10px;">
+                                <p style="margin: 0 0 10px 0;"><strong>PHONE:</strong></p>
+                                <div style="border-bottom: 1px solid #000; height: 20px; margin-bottom: 10px;"></div>
+                                <p style="margin: 0 0 10px 0;"><strong>JOB NAME / LOCATION:</strong></p>
+                                <div id="printJobName" style="border-bottom: 1px solid #000; height: 20px; margin-bottom: 10px; font-family: monospace; font-size: 1.1rem;"></div>
+                                <div style="border-bottom: 1px solid #000; height: 20px;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Scope of Work -->
+                        <div style="margin-bottom: 10px;">
+                            <p style="font-weight: bold; font-style: italic; margin-bottom: 5px;">Scope of Work:</p>
+                            <ul id="scopeList" style="margin-bottom: 0.5rem; padding-left: 20px; line-height: 1.5;"></ul>
+                        </div>
+
+                        <!-- Pricing & Terms -->
+                        <div style="background-color: #f9f9f9; padding: 10px 15px; border: 1px solid #ccc; margin-bottom: 10px;" class="print-pricing-block">
+                            <p style="margin: 0 0 5px 0; line-height: 1.5;"><strong>Total Proposal Price:</strong></p>
+                            <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;">
+                                <p class="price" id="retailPrice" style="margin: 0; font-size: 2rem; font-weight: bold; color: #73000A;">$0.00</p>
+                            </div>
+                            <p style="margin: 0; line-height: 1.5;"><strong>Payment Terms:</strong> Half down upon acceptance to schedule job and order materials. Remaining balance due immediately upon completion of work.</p>
+                        </div>
+
+                        <!-- Fine Print -->
+                        <div class="hidden" id="printFinePrint" style="font-size: 0.75rem; color: #555; margin-bottom: 15px; line-height: 1.3; text-align: justify;">
+                            All materials are guaranteed as specified. All work to be completed in a professional manner according to standard practices.
+                        </div>
+
+                        <!-- Interactive Digital Signature Pad (Tablet & Mobile Ready) -->
+                        <div id="interactiveSignatureSection" class="no-print" style="margin-top: 1.5rem; background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 6px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <span style="font-weight: bold; font-size: 0.95rem; color: #333;">✍️ Digital Acceptance & Signature:</span>
+                                <button type="button" id="clearSignatureBtn" style="background: #eceff1; color: #546e7a; border: none; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; font-weight: bold;">Clear Signature</button>
+                            </div>
+                            <div style="position: relative; border: 2px dashed #73000A; border-radius: 4px; background: #fafafa; margin-bottom: 6px;">
+                                <canvas id="signatureCanvas" width="400" height="100" style="display: block; width: 100%; height: 100px; touch-action: none; cursor: crosshair;"></canvas>
+                                <span id="sigPlaceholder" style="position: absolute; top: 38px; left: 0; width: 100%; text-align: center; color: #aaa; font-size: 0.85rem; pointer-events: none;">Sign with finger, stylus, or mouse</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #666;">
+                                <span>Status: <strong id="sigStatusLabel" style="color: #c0392b;">Unsigned</strong></span>
+                                <span id="signedTimestamp"></span>
+                            </div>
+                        </div>
+
+                        <!-- Signature Block for Printing -->
+                        <div class="signature-block hidden" id="printSignature">
+                            <div style="margin-bottom: 1.5rem;">
+                                <p style="margin: 0; font-size: 0.95rem;"><strong>Acceptance of Proposal</strong> — The above prices, specifications and conditions are satisfactory and are hereby accepted. You are authorized to do the work as specified. Payment will be made as outlined above.</p>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                                <div style="flex: 1;">
+                                    <p style="margin: 0 0 5px 0;">Date of Acceptance:</p>
+                                    <div class="signature-line" id="printAcceptanceDate" style="width: 150px; font-family: monospace; font-size: 0.95rem;"></div>
+                                </div>
+                                <div style="flex: 2;">
+                                    <p style="margin: 0 0 5px 0;">Customer Digital Signature:</p>
+                                    <div id="printSignatureImageContainer" style="height: 50px; border-bottom: 2px solid #000;">
+                                        <img id="printSignatureImg" class="hidden" style="max-height: 48px;" alt="Signature">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="no-print" style="margin: 1.5rem 0; border: 1px solid #ecf0f1;">
+                        
+                        <!-- Steve's Contractor Mode Toggle & Wholesale Cut-List View -->
+                        <div class="no-print" style="margin-bottom: 1rem;">
+                            <button type="button" id="toggleContractorProBtn" style="background: #37474f; color: white; width: 100%; padding: 0.6rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; font-weight: bold;">🛠️ Toggle Steve's Contractor Pro View (Wholesale & Cut-Lists)</button>
+                        </div>
+
+                        <!-- Internal pricing / contractor view -->
+                        <div id="contractorProSection" class="hidden" style="background: #fdfefe; border: 2px solid #37474f; border-radius: 6px; padding: 15px; margin-bottom: 1.5rem;">
+                            <h4 style="color: #73000A; margin-top: 0;">Steve's Wholesale & Fabrication Order Sheet</h4>
+                            <p><strong>Wholesale Materials:</strong> <span id="resCost">$0.00</span></p>
+                            <p><strong>Total Labor & Tear-Off:</strong> <span id="resLabor">$0.00</span></p>
+                            <p><strong>Target Profit Margin:</strong> <span id="resProfit">$0.00</span></p>
+                            
+                            <h4 style="margin-top: 1rem; color: #37474f;">Best Buy Metals Custom Cut-List & BOM</h4>
+                            <ul id="bomList"></ul>
+                        </div>
+                    </div>
+                    <button id="previewBtn" class="full-width-btn no-print" style="background-color: #3498db; margin-top: 1.5rem;">📄 Preview & Print Proposal</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Proposal Preview Modal -->
+    <div id="previewModal" class="hidden no-print" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; overflow-y: auto; padding: 2rem;">
+        <div style="background: white; max-width: 800px; margin: 0 auto; padding: 3rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <div style="text-align: right; margin-bottom: 2rem; border-bottom: 1px solid #ccc; padding-bottom: 1rem;">
+                <button id="closePreviewBtn" style="background: #95a5a6; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer; margin-right: 1rem; font-size: 1rem;">Close Preview</button>
+                <button id="executePrintBtn" style="background: #3498db; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; font-weight: bold;">🖨️ Print to PDF</button>
+            </div>
+            
+            <div id="modalProposalContent">
+                <!-- Proposal contents copied here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Maps JS API snippet with 3D Library -->
+    <script>
+        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+            key: window.GOOGLE_MAPS_API_KEY || "",
+            v: "alpha" // 3D Maps requires alpha/beta
+        });
+    </script>
+
+    
+    <script src="app.js"></script>
+</body>
+</html>

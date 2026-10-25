@@ -1,0 +1,57 @@
+{
+  "address": "690 Dogwood Lane, Buncombe County, NC",
+  "notes": "Customer: David Galloway\nAddress: 690 Dogwood Lane, Buncombe County, NC\nFootprint: 1,400 sq ft, 6/12 pitch roof.\nScope: Standing seam metal roof replacement with underlayment, ice and water shield, and chimney flashing.",
+  "quote_preview": "LOCAL DEMO QUOTE - Gemini API key was not configured.\n\nRoofing proposal: replace existing roof with 26ga Galvalume standing seam panels. Include tear-off, deck inspection, high-temperature synthetic underlayment, ice and water shield, chimney flashing, cleanup, labor, disposal, and permit allowance.\n\nThis quote is a workflow demonstration and must be replaced with a live Gemini-generated proposal before use.",
+  "points": [
+    [
+      120,
+      120
+    ],
+    [
+      520,
+      120
+    ],
+    [
+      560,
+      320
+    ],
+    [
+      300,
+      420
+    ],
+    [
+      90,
+      300
+    ]
+  ],
+  "closed": true,
+  "scale": "5.0",
+  "pitch": "Moderate (6/12)",
+  "profile": "26ga Standing Seam (16in panel)",
+  "waste": "10%",
+  "current_zoom": 19,
+  "quote_ready": true,
+  "accepted": true,
+  "contract_signed": true,
+  "customer_signature": "David Galloway",
+  "contractor_signature": "Steve Roofing",
+  "quote_drafted_at": "2026-09-16T15:11:28+00:00",
+  "accepted_at": "2026-09-16T15:11:28+00:00",
+  "contract_signed_at": "2026-09-16T15:11:28+00:00",
+  "audit_log": [
+    {
+      "timestamp": "2026-09-16T15:11:28+00:00",
+      "event": "Quote drafted"
+    },
+    {
+      "timestamp": "2026-09-16T15:11:28+00:00",
+      "event": "Quote accepted by David Galloway"
+    },
+    {
+      "timestamp": "2026-09-16T15:11:28+00:00",
+      "event": "Contract signed by Steve Roofing"
+    }
+  ],
+  "codes": "======================================================================\nNORTH CAROLINA RESIDENTIAL CODE (NCRC) - ROOF ASSEMBLY COMPLIANCE\n======================================================================\n\n[+] AHJ JURISDICTION: Buncombe County Permitting & Inspections\n    - Building Permit: REQUIRED for structural re-roofing / material transition.\n    - Decking Inspection: Mandatory prior to underlayment application.\n\n[+] TECHNICAL CODE REQUIREMENTS:\n    - Wind Resistance (NCRC R905.10): Fasteners must withstand local design wind\n      speeds (115 mph baseline in western NC).\n    - Underlayment (NCRC R905.1.1): Self-adhering polymer-modified bitumen sheet\n      required at eaves and valleys (ice & water shield) where pitch <= 6/12.\n    - Metal Panel Standard: Must comply with ASTM A792 (55% Al-Zn Galvalume).",
+  "phases": "======================================================================\nPHASED EXECUTION: MATERIALS, TOOLS & STAGING MANIFEST\n======================================================================\n\nPHASE 1: TEAR-OFF & DEMOLITION\n  [ ] Tools: Pitch hoes, roofing shovels, magnetic sweepers, tarps\n  [ ] Disposal: 20-yard roll-off dumpster staged driveway-side\n  [ ] Safety: OSHA harness kits, rope grabs, ridge anchor brackets\n\nPHASE 2: DECK PREPARATION & UNDERLAYMENT\n  [ ] Materials: 7/16\" OSB sheathing buffer, 8d ring-shank nails\n  [ ] Barriers: High-temp synthetic underlayment + ice & water shield\n\nPHASE 3: STANDING SEAM INSTALLATION\n  [ ] Metal Panels: Custom cut Galvalume 26ga standing seam\n  [ ] Fasteners: #10 pancake-head concealed clip screws\n  [ ] Trim: Custom bent drip edge, rake, ridge cap, butyl tape, poly sealant"
+}

@@ -1,0 +1,296 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    font-size: 18px;
+    line-height: 1.5;
+}
+header {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-bottom: 4px solid #73000A;
+}
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+header p {
+    margin: 10px 0 0 0;
+    font-size: 1.1em;
+    color: #555555;
+}
+main {
+    max-width: 1300px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.instructions {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    border-left: 5px solid #000000;
+}
+.instructions h2 {
+    margin-top: 0;
+    color: #73000A;
+}
+.app-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.visualizer-container {
+    flex: 1.5;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+.map-search-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.map-search-container input {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 1.1rem;
+}
+#map3d-container {
+    background: #000;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    width: 100%;
+    height: 550px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+gmp-map-3d {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.controls-3d {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.controls-3d button {
+    background-color: #000000;
+    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+}
+.controls-3d label {
+    font-size: 1.05rem;
+}
+.controls-3d input[type="radio"] {
+    width: 22px;
+    height: 22px;
+}
+.controls-3d button:hover {
+    background-color: #333333;
+}
+button {
+    background-color: #73000A;
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.1s;
+}
+button:hover {
+    background-color: #500007;
+}
+button:active {
+    transform: scale(0.98);
+}
+.form-container {
+    flex: 1;
+    min-width: 350px;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.form-container h3 {
+    margin-top: 0;
+    color: #73000A;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 0.5rem;
+}
+.form-container label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #000000;
+}
+.form-container input, .form-container select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #fcfcfc;
+}
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.input-grid > div:first-child {
+    grid-column: 1 / -1; /* Area spans full width */
+}
+.full-width-btn {
+    width: 100%;
+    margin-top: 1rem;
+    background-color: #000000;
+}
+.full-width-btn:hover {
+    background-color: #333333;
+}
+.results-hidden {
+    display: none;
+}
+#results {
+    margin-top: 2rem;
+    border-top: 3px solid #ecf0f1;
+    padding-top: 1.5rem;
+}
+#results h4 {
+    color: #73000A;
+    margin-bottom: 0.5rem;
+}
+#bomList {
+    background: #f8f9fa;
+    padding: 1rem 1rem 1rem 2.5rem;
+    border-radius: 4px;
+    border-left: 4px solid #000000;
+    font-size: 0.95rem;
+}
+#bomList li {
+    margin-bottom: 0.5rem;
+}
+.price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #73000A;
+    margin: 0 0 1.5rem 0;
+}
+.disclaimer {
+    font-size: 0.95em;
+    color: #595959; /* darkened from a lighter gray to meet readable contrast */
+    margin-top: 1rem;
+    line-height: 1.4;
+}
+.hidden {
+    display: none !important;
+}
+.map-tabs {
+    display: flex;
+    margin-bottom: 1rem;
+    gap: 10px;
+}
+.map-tabs button {
+    background-color: #ecf0f1;
+    color: #000000;
+    flex: 1;
+    font-size: 1rem;
+    padding: 1rem;
+    min-height: 48px; /* comfortable tap target */
+}
+.map-tabs button.active-tab {
+    background-color: #73000A;
+    color: white;
+}
+
+/* Print Media Queries for PDF Proposal */
+@media print {
+    /* Hide everything EXCEPT the modal */
+    body > *:not(#previewModal) {
+        display: none !important;
+    }
+
+    /* Override the modal styling to make it look like a clean document */
+    #previewModal {
+        display: block !important;
+        position: static !important;
+        background: transparent !important;
+        overflow: visible !important;
+        padding: 0 !important;
+    }
+    
+    #previewModal > div {
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+    
+    /* Hide the modal's top button bar */
+    #previewModal > div > div:first-child {
+        display: none !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+
+    .print-header,
+    #printCustomerGrid,
+    #printFinePrint,
+    .signature-block {
+        display: block !important;
+    }
+    
+    #printCustomerGrid {
+        display: grid !important;
+    }
+
+    .print-logo {
+        height: 60px;
+        width: auto;
+    }
+    
+    .price {
+        font-size: 2.5rem;
+        color: #000000 !important; /* Force black for printing */
+    }
+    
+    ul#scopeList li {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .signature-block {
+        margin-top: 30px;
+        page-break-inside: avoid;
+    }
+    
+    .signature-line {
+        border-bottom: 1px solid #000;
+        width: 300px;
+        display: inline-block;
+        margin-right: 20px;
+    }
+    
+    @page {
+        margin: 0.5in;
+    }
+}

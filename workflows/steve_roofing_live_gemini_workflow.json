@@ -1,0 +1,57 @@
+{
+  "address": "690 Dogwood Lane, Buncombe County, NC",
+  "notes": "Customer: David Galloway\nAddress: 690 Dogwood Lane, Buncombe County, NC\nFootprint: Roughly 1,400 sq ft, 6/12 pitch roof.\nScope: Strip existing shingles. Install 26ga Galvalume standing seam, high-temp synthetic underlayment, ice and water shield in valleys, and chimney flashing.",
+  "quote_preview": "**STEVE\u2019S ROOFING**  \n*Quality Workmanship | North Carolina Proud*  \nPO Box 450, Asheville, NC 28801 | (828) 555-ROOF | info@stevesroofingnc.com  \n\n---\n\n### **PROPOSAL & CONTRACT LOCK**\n\n**Date:** October 24, 2023  \n**Proposal #:** SR-2023-0690  \n\n---\n\n### **1. PROJECT SUMMARY & CALCULATED MEASUREMENTS**\n\n* **Client Name:** David Galloway  \n* **Property Address:** 690 Dogwood Lane, Buncombe County, NC  \n* **Roof Footprint Area:** ~1,400 sq. ft.  \n* **Roof Pitch:** 6/12 Slope  \n* **Pitch Factor Multiplier:** 1.118  \n* **Actual Roof Surface Area:** 1,565 sq. ft. (15.65 Squares)  \n* **Scrap / Waste Factor:** 10% (+1.57 Squares)  \n* **Total Material Billable Area:** **17.22 Squares** *(Billed as 17.25 Squares)*\n\n---\n\n### **2. DETAILED SCOPE OF WORK**\n\n#### **Phase 1: Tear-Off & Demolition**\n* Strip and dispose of one (1) layer of existing asphalt shingles down to the bare wooden decking.\n* Inspect underlying roof decking (plywood/OSB) for rot or structural defect. *(Note: Decking replacement, if needed, will be billed at $85 per 4'x8' sheet upon client approval).*\n\n#### **Phase 2: Substrate & Waterproofing Preparation**\n* **Valleys:** Install self-adhering, high-temperature Ice & Water Shield barrier along all valley lines to prevent ice-dam and wind-driven rain penetration.\n* **Deck Underlayment:** Install premium High-Temp Synthetic Underlayment across 100% of the remaining roof deck, meeting NC Building Code standards for high-temp metal roof assemblies.\n\n#### **Phase 3: Metal Roofing System Installation**\n* Supply and custom-fit **26-Gauge Galvalume Standing Seam Metal Panels** (Concealed Fastener System).\n* Install factory-bent eaves drip edge, rake trim, sidewall, and ridge cap to match panel profile and finish.\n\n#### **Phase 4: Flashing & Penetrations**\n* **Chimney Flashing:** Custom-fabricate and install a full Galvalume metal apron, step-flashing, and counter-flashing around the chimney masonry, sealed with high-grade polyurethane sealant.\n\n#### **Phase 5: Site Cleanup & Final Inspection**\n* Magnetic sweep of the entire yard, driveway, and landscaping beds to recover nails and metal shavings.\n* Complete removal and haul-off of all job-related debris.\n* Final quality audit with the client and municipal code inspection.\n\n---\n\n### **3. ITEMIZED COST ESTIMATE**\n\n| Item Description | Cost |\n| :--- | :--- |\n| **Materials:** 26ga Galvalume Standing Seam Panels, High-Temp Synthetic Underlayment, Ice & Water Shield, Drip Edge, Rake/Ridge Trim, Fasteners, Sealants | $9,800.00 |\n| **Labor:** Complete Tear-off, Substrate Prep, Panel Fabrication & Installation, Custom Chimney Flashing | $7,950.00 |\n| **Debris Disposal:** Container, Haul-off, and Buncombe County Landfill Tipping Fees | $650.00 |\n| **Permit & Administrative:** Buncombe County Building Permit and Inspection Fees | $200.00 |\n| **TOTAL ESTIMATED INVESTMENT** | **$18,600.00** |\n\n---\n\n### **4. PAYMENT TERMS & CONTRACT ACCEPTANCE (QAC)**\n\n#### **Payment Schedule:**\n* **33% Deposit ($6,138.00):** Due upon signing to lock in pricing and order materials.\n* **33% Delivery / Start ($6,138.00):** Due on the first day of material delivery/crew mobilization.\n* **34% Balance ($6,324.00):** Due immediately upon complete installation and final walk-through.\n\n#### **Terms & Warranty:**\n1. **Workmanship Guarantee:** Steve\u2019s Roofing provides a 10-Year Craftsmanship Warranty against installation defects and leaks.\n2. **Material Warranty:** 26ga Galvalume panels come with a manufacturer substrate warranty against rust-through.\n3. **Change Orders:** Any deviation from the above scope (e.g., rotten deck replacement) will be quoted in writing and require written client approval before work proceeds.\n4. **Validity:** Pricing valid for 30 days from proposal date.\n\n---\n\n### **ACCEPTANCE OF PROPOSAL**\n*By signing below, the client agrees to the scope of work, pricing, and payment terms outlined above. Upon signature, this document becomes a legally binding Contract Lock.*\n\n**Client Name (Printed):** ____________________________________________  \n\n**Client Signature:** _________________________________________________  **Date:** _______________  \n\n**Contractor Signature:** _____________________________________________  **Date:** _______________  \n*(Steve\u2019s Roofing Representative)*",
+  "points": [
+    [
+      120,
+      120
+    ],
+    [
+      520,
+      120
+    ],
+    [
+      560,
+      320
+    ],
+    [
+      300,
+      420
+    ],
+    [
+      90,
+      300
+    ]
+  ],
+  "closed": true,
+  "scale": "5.0",
+  "pitch": "Moderate (6/12)",
+  "profile": "26ga Standing Seam (16in panel)",
+  "waste": "10%",
+  "current_zoom": 19,
+  "quote_ready": true,
+  "accepted": true,
+  "contract_signed": true,
+  "customer_signature": "David Galloway",
+  "contractor_signature": "Steve Roofing",
+  "quote_drafted_at": "2026-09-16T15:13:08+00:00",
+  "accepted_at": "2026-09-16T15:13:08+00:00",
+  "contract_signed_at": "2026-09-16T15:13:09+00:00",
+  "audit_log": [
+    {
+      "timestamp": "2026-09-16T15:13:08+00:00",
+      "event": "Quote drafted"
+    },
+    {
+      "timestamp": "2026-09-16T15:13:08+00:00",
+      "event": "Quote accepted by David Galloway"
+    },
+    {
+      "timestamp": "2026-09-16T15:13:09+00:00",
+      "event": "Contract signed by Steve Roofing"
+    }
+  ],
+  "codes": "======================================================================\nNORTH CAROLINA RESIDENTIAL CODE (NCRC) - ROOF ASSEMBLY COMPLIANCE\n======================================================================\n\n[+] AHJ JURISDICTION: Buncombe County Permitting & Inspections\n    - Building Permit: REQUIRED for structural re-roofing / material transition.\n    - Decking Inspection: Mandatory prior to underlayment application.\n\n[+] TECHNICAL CODE REQUIREMENTS:\n    - Wind Resistance (NCRC R905.10): Fasteners must withstand local design wind\n      speeds (115 mph baseline in western NC).\n    - Underlayment (NCRC R905.1.1): Self-adhering polymer-modified bitumen sheet\n      required at eaves and valleys (ice & water shield) where pitch <= 6/12.\n    - Metal Panel Standard: Must comply with ASTM A792 (55% Al-Zn Galvalume).",
+  "phases": "======================================================================\nPHASED EXECUTION: MATERIALS, TOOLS & STAGING MANIFEST\n======================================================================\n\nPHASE 1: TEAR-OFF & DEMOLITION\n  [ ] Tools: Pitch hoes, roofing shovels, magnetic sweepers, tarps\n  [ ] Disposal: 20-yard roll-off dumpster staged driveway-side\n  [ ] Safety: OSHA harness kits, rope grabs, ridge anchor brackets\n\nPHASE 2: DECK PREPARATION & UNDERLAYMENT\n  [ ] Materials: 7/16\" OSB sheathing buffer, 8d ring-shank nails\n  [ ] Barriers: High-temp synthetic underlayment + ice & water shield\n\nPHASE 3: STANDING SEAM INSTALLATION\n  [ ] Metal Panels: Custom cut Galvalume 26ga standing seam\n  [ ] Fasteners: #10 pancake-head concealed clip screws\n  [ ] Trim: Custom bent drip edge, rake, ridge cap, butyl tape, poly sealant"
+}
