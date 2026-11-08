@@ -121,3 +121,45 @@ def test_unified_bom_pipeline():
     assert math.isclose(geom["true_rake_ft"], 17.89, abs_tol=0.01)
     assert bom["procurement"]["panel_quantity"] == 14
     assert bom["recovery_advantage"]["net_savings"] == 1950.0
+
+
+def test_scale_factor_polar_and_negative_resolution_fallback():
+    """Verify scale factor falls back to 5.0 when ground resolution is <= 0."""
+    # At 90 degrees latitude, cos(90 deg) is ~0; >90 degrees is negative
+    scale_obtuse = calculate_scale_factor(100.0, 19)
+    assert scale_obtuse == 5.0
+
+
+def test_pitch_multiplier_degrees_non_positive_cosine_fallback():
+    """Verify degree pitch multiplier returns 1.0 fallback when cos(theta) <= 0."""
+    assert calculate_pitch_multiplier(95.0, is_degrees=True) == 1.0
+    assert calculate_pitch_multiplier(120.0, is_degrees=True) == 1.0
+    assert calculate_pitch_multiplier(180.0, is_degrees=True) == 1.0
+
+
+def test_shoelace_degenerate_inputs():
+    """Verify degenerate polygon inputs (<3 points or non-positive scale) return zeros."""
+    assert calculate_shoelace_area_and_perimeter([], px_per_ft=5.0) == (0.0, 0.0)
+    assert calculate_shoelace_area_and_perimeter([(0.0, 0.0), (10.0, 10.0)], px_per_ft=5.0) == (0.0, 0.0)
+    pts: List[Tuple[float, float]] = [(0.0, 0.0), (10.0, 0.0), (0.0, 10.0)]
+    assert calculate_shoelace_area_and_perimeter(pts, px_per_ft=0.0) == (0.0, 0.0)
+    assert calculate_shoelace_area_and_perimeter(pts, px_per_ft=-2.5) == (0.0, 0.0)
+
+
+def test_unified_bom_degrees_and_tear_off():
+    """Verify unified BOM with degree pitch, standing seam profile, and tear-off mode."""
+    bom = calculate_unified_bom(
+        eave_length_ft=20.0,
+        rake_length_2d_ft=15.0,
+        flat_area_sqft=600.0,
+        pitch=30.0,
+        is_degrees=True,
+        panel_profile="standing_seam_16",
+        is_recover=False,
+        waste_pct=15.0,
+    )
+    assert bom["procurement"]["panel_profile"] == "26ga Standing Seam (16in)"
+    assert bom["procurement"]["purlin_rows"] == 0
+    assert bom["recovery_advantage"]["net_savings"] == 0.0
+    assert bom["recovery_advantage"]["dumpster_fee"] == 650.0
+
